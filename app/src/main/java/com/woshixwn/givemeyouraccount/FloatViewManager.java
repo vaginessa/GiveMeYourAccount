@@ -10,6 +10,8 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethod;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import java.lang.reflect.Field;
@@ -120,8 +122,11 @@ public class FloatViewManager {
         params.type = WindowManager.LayoutParams.TYPE_PHONE;
         params.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE| WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL;
         params.format = PixelFormat.RGBA_8888;
-
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(100,InputMethodManager.HIDE_NOT_ALWAYS);
+//        params. = WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE;
         wm.addView(floatMenuView, params);
+
     }
 
     private static FloatViewManager instance;
